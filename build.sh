@@ -32,8 +32,8 @@ if [ ! -e $IMG ] ; then
 fi
 
 
-if [ ! -e carbidemotion-524.deb ] ; then
-	curl -O -L https://motion-pi.us-east-1.linodeobjects.com/carbidemotion-524.deb
+if [ ! -e carbidemotion-530.deb ] ; then
+	curl -O -L https://motion-pi.us-east-1.linodeobjects.com/carbidemotion-530.deb
 fi
 
 # we need the loopback devices to support partitioned devices, so force this on
@@ -70,7 +70,7 @@ rm image/etc/ld.so.preload
 
 # copy the carbide motion file into the image
 mkdir -p image/tmp/discard
-cp carbidemotion-524.deb image/tmp/discard
+cp carbidemotion-530.deb image/tmp/discard
 
 #
 # Delayed launcher so that CM does not start until the user is done configuring
@@ -105,7 +105,7 @@ chroot image apt-mark manual samba
 #
 # Install carbide motion
 #
-chroot image/ apt-get install -q -y /tmp/discard/carbidemotion-524.deb 
+chroot image/ apt-get install -q -y /tmp/discard/carbidemotion-530.deb 
 
 
 #
@@ -133,12 +133,6 @@ rm -rf image/usr/lib/pypy/
 # And now we add back "arandr" since some weird displays need it
 #
 chroot image/ apt-get install -q -y arandr
-
-
-#
-# Install carbide motion
-#
-chroot image/ apt-get install -q -y /tmp/discard/carbidemotion-524.deb 
 
 
 

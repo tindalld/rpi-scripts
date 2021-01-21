@@ -31,10 +31,10 @@ sudo cp -p /etc/samba/smb.conf smb.conf.bak
 echo "setting up folders"
 mkdir /home/pi/Carbide3d
 mkdir /home/pi/Carbide3d/gcode
-mkdir /home/pi/Carbide3d/usb
+mkdir /home/pi/Carbide3d/gcode/usb
 chown  1000.1000 /home/pi/Carbide3d
 chown 1000.1000 /home/pi/Carbide3d/gcode
-chown 1000.1000 /home/pi/Carbide3d/usb
+chown 1000.1000 /home/pi/Carbide3d/gcode/usb
 
 echo "download and install Carbide Motion"
 cd /home/pi/Carbide3d
@@ -66,7 +66,7 @@ echo "[Service]" > image/etc/systemd/system/systemd-udevd.service.d/myoverride.c
 echo "MountFlags=shared" >> image/etc/systemd/system/systemd-udevd.service.d/myoverride.conf
 echo "PrivateMounts=no" >> image/etc/systemd/system/systemd-udevd.service.d/myoverride.conf
 # redirect the first USB stick to /gode/usb
-echo "/dev/sda1        /home/pi/Carbide3d/usb   vfat	user,noauto,uid=1000    0      0" >> /etc/fstab
+echo "/dev/sda1        /home/pi/Carbide3d/gcode/usb   vfat	user,noauto,uid=1000    0      0" >> /etc/fstab
 
 echo "install and enable realVNC server"
 sudo apt-get install -y  realvnc-vnc-server
